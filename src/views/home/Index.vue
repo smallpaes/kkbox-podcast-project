@@ -1,14 +1,16 @@
 <template>
   <div class="container home">
-    <potcast-profile
-      v-if="!isLoading"
-      :profile-data="{
-        image: channelInfo.image.url,
-        imageAlt: channelInfo.image.title || 'Channel Profile Picture',
-        title: channelInfo.title
-      }"
-    />
-    <episode-list :list="episodes" />
+    <general-loader v-if="isLoading" />
+    <template v-else>
+      <potcast-profile 
+        :profile-data="{
+          image: channelInfo.image.url,
+          imageAlt: channelInfo.image.title || 'Channel Profile Picture',
+          title: channelInfo.title
+        }"
+      />
+      <episode-list :list="episodes" />
+    </template>
   </div>
 </template>
 

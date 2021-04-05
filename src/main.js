@@ -8,9 +8,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlay, faPause, faSpinner, faBroadcastTower } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import GeneralLoader from '@/components/loader/GeneralLoader'
+
 library.add(faPlay, faPause, faSpinner, faBroadcastTower)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.component(GeneralLoader.name, GeneralLoader)
 
 Vue.config.productionTip = false;
 

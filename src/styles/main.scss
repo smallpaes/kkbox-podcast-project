@@ -1,0 +1,13 @@
+// normalize css
+@import 'normalize-scss';
+@include normalize();
+
+// common
+@import './common/functions';
+@import './common/variables';
+@import './common/base';
+@import './common/mixins';
+@import './common/button';
+@import './common/transition';
+@import './common/layout';
+@import './common/input';

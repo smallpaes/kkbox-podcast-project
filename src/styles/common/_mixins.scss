@@ -1,0 +1,16 @@
+@mixin btn {
+  font-size: $theme-font-size-small;
+  font-weight: $theme-font-weight-bold;
+  border-radius: 32px;
+  padding: 10px;
+  min-width: 72px;
+  white-space: nowrap;
+  word-break: keep-all;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

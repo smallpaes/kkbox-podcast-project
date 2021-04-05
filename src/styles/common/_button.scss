@@ -1,0 +1,23 @@
+.btn {
+  @include btn;
+
+  &:focus {
+    outline: none;
+  }
+
+  &--large {
+    padding: 15px 80px;
+  }
+
+  &--primary {
+    @extend .btn;
+    color: $theme-text-color-light;
+    background-color: $theme-color-primary;
+    transition: color .25s,background-color .25s,border-color .25s;
+
+    &:hover {
+      color: $theme-color-primary;
+      background-color: $theme-text-color-dark;
+    }
+  }
+}

@@ -32,8 +32,8 @@ $theme-border-radius-large: 8px;
 $theme-border-radius-x-large: 12px;
 
 // box-shadow
-$theme-box-shadow-large: 0 8px 24px 0 rgb(0, 0, 0 / 20%);
-$theme-box-shadow-normal: 0 3px 12px 0 rgb(0, 0, 0 / 10%);
+$theme-box-shadow-large: 0 8px 24px 0 rgba(0, 0, 0, .2);
+$theme-box-shadow-normal: 0 3px 12px 0 rgba(0, 0, 0, .2);
 
 // line-height
 $theme-line-height-normal: 23px;

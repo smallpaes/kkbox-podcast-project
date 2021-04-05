@@ -14,3 +14,30 @@
     cursor: not-allowed;
   }
 }
+
+@mixin input-range-track ($browser-engine: 'others', $track-height: 8px, $background-color: $theme-text-color-grey, $filled-color: $theme-color-primary) {
+  width: 100%;
+  height: $track-height;
+  cursor: pointer;
+  background: $background-color;
+
+  // Chrome and Safari handle background on the left and right hand side of the thumb
+  @if $browser-engine == 'webkit' {
+    background: linear-gradient($filled-color, $filled-color)
+		  0 / calc(1% * var(--val)) 100% no-repeat $background-color;
+  }
+}
+
+@mixin input-range-track-lower-range ($track-height: 8px, $background-color: $theme-text-color-grey) {
+  height: $track-height;
+  background: $background-color;
+}
+
+@mixin input-range-thumb ($thumb-size: 16px, $background-color: $theme-color-primary) {
+  box-shadow: $theme-box-shadow-large;
+  height: $thumb-size;
+  width: $thumb-size;
+  border-radius: 50%;
+  background: $background-color;
+  cursor: pointer;
+}

@@ -1,5 +1,55 @@
+// Variables
+$track-height: 7px;
+$thumb-size: 16px;
+
 input {
-  &:focus, &.valid {
-    outline: none;
+  &:focus, &.valid { outline: none; }
+}
+
+input[type=range] {
+  // Remove range input default styling
+  -webkit-appearance: none; /* Hide the default slider */
+  width: 100%; /* Specified for Firefox. */
+  background: transparent; /* Chrome's default is white */
+
+  &:focus { outline: none; }
+
+  // Used to click or drag to adjust progress
+  &::-webkit-slider-thumb { -webkit-appearance: none; }
+
+  // Line that thumb moves across
+  &::-ms-track {
+    width: 100%;
+    cursor: pointer;
+
+    // Hides the slider so custom styles can be added
+    background: transparent; 
+    border-color: transparent;
+    color: transparent;
+  }
+
+  &::-ms-tooltip { display: none }
+  
+  // Custom Track Styling
+  &::-webkit-slider-runnable-track { @include input-range-track('webkit', $track-height); }
+  &::-moz-range-track { @include input-range-track('others', $track-height); }
+  &::-ms-track { @include input-range-track('others', $track-height); }
+  &::-ms-fill-lower { @include input-range-track-lower-range($track-height); }
+  &::-moz-range-progress { @include input-range-track-lower-range($track-height); }
+
+  // Custom Thumb Styling
+  &::-webkit-slider-thumb {
+    @include input-range-thumb($thumb-size);
+    margin-top: .5 * ($track-height - $thumb-size); /* Chrome Specific */
+  }
+
+  &::-moz-range-thumb {
+    @include input-range-thumb($thumb-size);
+    margin-top: 0;
+  }
+  
+  &::-ms-thumb {
+    @include input-range-thumb($thumb-size);
+    margin-top: 0;
   }
 }

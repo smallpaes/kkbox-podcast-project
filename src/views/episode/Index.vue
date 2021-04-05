@@ -31,7 +31,7 @@
 
 <script>
 import PotcastProfile from '@/components/profile/PotcastProfile'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Episode',
@@ -45,6 +45,7 @@ export default {
   },
   computed: {
     ...mapState('channel', ['episodes']),
+    ...mapState('player', ['isDisplayed']),
     episodeData () {
       return this.episodes.find(episode => episode.guid === this.$route.params.guid)
     }
@@ -53,8 +54,24 @@ export default {
     
   },
   methods: {
+    ...mapMutations('player', ['toggleIsDisplayed', 'setCurrentSongInfo', 'setPlayList', 'toggleIsPlaying']),
     async playEpisode () {
-      
+      this.toggleIsPlaying(false)
+
+      // 確保狀態以正確變更
+      await this.$nextTick()
+
+      // 更新當前資訊
+      this.setCurrentSongInfo({ 
+        title: this.episodeData.title,
+        guid: this.episodeData.guid,
+        ...this.episodeData.enclosure
+      })
+      const currentSongIndex = this.episodes.findIndex(episode => episode.guid === this.episodeData.guid)
+      const remainingPlayList = this.episodes.slice(0, currentSongIndex)
+      this.setPlayList(remainingPlayList)
+      if (!this.isDisplayed) this.toggleIsDisplayed(true)
+      this.toggleIsPlaying(true)
     }
   }
 }

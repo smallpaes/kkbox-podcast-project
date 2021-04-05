@@ -67,9 +67,13 @@ export default {
         guid: this.episodeData.guid,
         ...this.episodeData.enclosure
       })
+
+      // 更新播放清單
       const currentSongIndex = this.episodes.findIndex(episode => episode.guid === this.episodeData.guid)
       const remainingPlayList = this.episodes.slice(0, currentSongIndex)
       this.setPlayList(remainingPlayList)
+
+      // 如果 player 尚未打開，則需要先開啟
       if (!this.isDisplayed) this.toggleIsDisplayed(true)
       this.toggleIsPlaying(true)
     }

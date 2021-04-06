@@ -9,12 +9,14 @@ import { faPlay, faPause, faSpinner, faBroadcastTower } from '@fortawesome/free-
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import GeneralLoader from '@/components/loader/GeneralLoader'
+import Message from '@/components/message/Message'
 
 library.add(faPlay, faPause, faSpinner, faBroadcastTower)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.component(GeneralLoader.name, GeneralLoader)
+Vue.component(Message.name, Message)
 
 Vue.config.productionTip = false;
 
@@ -22,4 +24,4 @@ new Vue({
   router,
   store,
   render: (h) => h(App),
-}).$mount('#app');
+}).$mount('#app')

@@ -1,19 +1,25 @@
 <template>
   <div class="container home">
-    <general-loader v-if="isLoading" />
+    <message
+      v-if="isFailed"
+      :custom-message="errorMessage"
+    />
     <template v-else>
-      <potcast-profile 
-        :profile-data="{
-          image: channelInfo.image.url,
-          imageAlt: channelInfo.image.title || 'Channel Profile Picture',
-          title: channelInfo.title
-        }"
-      />
-      <episode-list :list="displayedEpisodes" />
-      <observer 
-        :options="configObserverOptions()" 
-        @intersect="getNewEpisodes"
-      />
+      <general-loader v-if="isLoading" />
+      <template v-else-if="!isLoading">
+        <potcast-profile 
+          :profile-data="{
+            image: channelInfo.image.url,
+            imageAlt: channelInfo.image.title || 'Channel Profile Picture',
+            title: channelInfo.title
+          }"
+        />
+        <episode-list :list="displayedEpisodes" />
+        <observer 
+          :options="configObserverOptions()" 
+          @intersect="getNewEpisodes"
+        />
+      </template>
     </template>
   </div>
 </template>
@@ -42,7 +48,9 @@ export default {
         columnPerScroll: 5
       },
       episodeListOffset: 0,
-      displayedEpisodes: []
+      displayedEpisodes: [],
+      isFailed: false,
+      errorMessage: null
     }
   },
   computed: {
@@ -53,11 +61,15 @@ export default {
   },
   methods: {
     ...mapActions('channel', ['configChannelInfo']),
-    async configChannel () {
+    configChannel () {
       this.isLoading = true
-      await this.configChannelInfo(RSS_FEED_URL)
-      this.getNewEpisodes()
-      this.isLoading = false
+      this.configChannelInfo(RSS_FEED_URL)
+        .then(() => this.getNewEpisodes())
+        .catch(errorMessage => {
+          this.errorMessage = errorMessage.message
+          this.isFailed = true
+        })
+        .finally(() => this.isLoading = false)
     },
     configObserverOptions () {
       return {

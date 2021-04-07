@@ -144,7 +144,7 @@ export default {
       this.continuePlaySong()
     },
     updateProgress (event, customTimeInSecond) {
-      // 單純 Seek 的話不更新來自 audio 的最新播放時間資訊
+      // Seeking 中來自 timeupdate 事件的觸發，不更新到頁面上，以 Seeking 資訊為主
       if (this.isDragging && !customTimeInSecond) return
 
       const currentTimeInSecond = customTimeInSecond || this.player.currentTime

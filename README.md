@@ -1,7 +1,7 @@
 # KKBOX Podcast Project
 A KKBOX side project built with audio player to play podcast served with RSS feed.
 
-:point_right: Visit the website: [GitHub Page](https://smallpaes.github.io/kkbox-potcast-project/#/)
+:point_right: Visit the website: [GitHub Page](https://smallpaes.github.io/kkbox-podcast-project/)
 
 ## Project First Look
 ![Project First Look](https://drive.google.com/uc?export=view&id=1gmNR0xjg4Vq_XIZ19CpxnrjQLB0QYnCC)

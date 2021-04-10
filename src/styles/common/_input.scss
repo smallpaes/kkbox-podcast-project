@@ -35,7 +35,7 @@ input[type=range] {
   &::-moz-range-track { @include input-range-track('others', $track-height); }
   &::-ms-track { @include input-range-track('others', $track-height); }
   &::-ms-fill-lower { @include input-range-track-lower-range($track-height); }
-  &::-moz-range-progress { @include input-range-track-lower-range($track-height); }
+  &::-moz-range-progress { @include input-range-track-lower-range($track-height, $theme-color-primary); }
 
   // Custom Thumb Styling
   &::-webkit-slider-thumb {
